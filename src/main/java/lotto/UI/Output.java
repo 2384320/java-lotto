@@ -2,7 +2,7 @@ package lotto.UI;
 
 import lotto.Domain.LotteryTickets;
 import lotto.Domain.Lotto;
-import lotto.Domain.LottoNumberVO;
+import lotto.Domain.LottoNumber;
 import lotto.Domain.Winning;
 
 import java.util.List;
@@ -28,9 +28,9 @@ public class Output {
         }
     }
 
-    public static List<Integer> convertLottoNumberToInt(List<LottoNumberVO> lotteryNumbers) {
+    public static List<Integer> convertLottoNumberToInt(List<LottoNumber> lotteryNumbers) {
         return lotteryNumbers.stream()
-                .map(LottoNumberVO::mapToInt)
+                .map(LottoNumber::mapToInt)
                 .collect(Collectors.toList());
     }
 

@@ -4,15 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class LottoNumberVO {
+public class LottoNumber {
     private static final int MINIMUM_NUMBER_RANGE = 1;
     private static final int MAXIMUM_NUMBER_RANGE = 45;
 
-    private static final Map<Integer, LottoNumberVO> lottoNumberVOCache = new HashMap<>();
+    private static final Map<Integer, LottoNumber> lottoNumberVOCache = new HashMap<>();
 
     private final int lottoNumber;
 
-    public LottoNumberVO(int lottoNumber) {
+    public LottoNumber(int lottoNumber) {
         validateRange(lottoNumber);
         this.lottoNumber = lottoNumber;
     }
@@ -27,11 +27,11 @@ public class LottoNumberVO {
         return lottoNumber;
     }
 
-    public static LottoNumberVO from(int lottoNumber) {
+    public static LottoNumber from(int lottoNumber) {
         if (lottoNumberVOCache.containsKey(lottoNumber))
             return lottoNumberVOCache.get(lottoNumber);
         else {
-            LottoNumberVO lottoNumberVO = new LottoNumberVO(lottoNumber);
+            LottoNumber lottoNumberVO = new LottoNumber(lottoNumber);
             lottoNumberVOCache.put(lottoNumber, lottoNumberVO);
             return lottoNumberVO;
         }
@@ -41,7 +41,7 @@ public class LottoNumberVO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LottoNumberVO lottoNumber = (LottoNumberVO) o;
+        LottoNumber lottoNumber = (LottoNumber) o;
         return Objects.equals(this.lottoNumber, lottoNumber.lottoNumber);
     }
 

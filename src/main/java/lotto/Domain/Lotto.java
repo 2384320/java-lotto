@@ -9,7 +9,7 @@ public class Lotto {
     private static final int MINIMUM_NUMBER_RANGE = 1;
     private static final int MAXIMUM_NUMBER_RANGE = 45;
     private static final int LOTTERY_PRICE = 1000;
-    private final List<LottoNumberVO> numbers;
+    private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -36,15 +36,15 @@ public class Lotto {
                 .collect(Collectors.toList());
     }
 
-    public List<LottoNumberVO> generateLottoNumbers(List<Integer> numbers) {
-        List<LottoNumberVO> lottoNumberVOList = new ArrayList<>();
+    public List<LottoNumber> generateLottoNumbers(List<Integer> numbers) {
+        List<LottoNumber> lottoNumberVOList = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            lottoNumberVOList.add(LottoNumberVO.from(numbers.get(i)));
+            lottoNumberVOList.add(LottoNumber.from(numbers.get(i)));
         }
         return lottoNumberVOList;
     }
 
-    public List<LottoNumberVO> getNumbers() {
+    public List<LottoNumber> getNumbers() {
         return numbers;
     }
 

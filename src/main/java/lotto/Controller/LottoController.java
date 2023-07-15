@@ -2,7 +2,7 @@ package lotto.Controller;
 
 import lotto.Domain.LotteryTickets;
 import lotto.Domain.Lotto;
-import lotto.Domain.LottoNumberVO;
+import lotto.Domain.LottoNumber;
 import lotto.Domain.PurchasePrice;
 import lotto.Domain.Winning;
 import lotto.Domain.WinningLotto;
@@ -48,7 +48,7 @@ public class LottoController {
         Lotto winningNumbersList = new Lotto(Input.inputWinningNumbers());
 
         Output.outputBonusNumber();
-        LottoNumberVO bonusNumber = LottoNumberVO.from(Input.inputBonusNumber());
+        LottoNumber bonusNumber = LottoNumber.from(Input.inputBonusNumber());
 
         return new WinningLotto(bonusNumber, winningNumbersList);
     }
@@ -81,7 +81,7 @@ public class LottoController {
             Map<Winning, Integer> winningScoreMap
     ) {
         for (Lotto lottery : lotteryTickets.getLotteryTickets()) {
-            List<LottoNumberVO> lotteryNumbers = lottery.getNumbers();
+            List<LottoNumber> lotteryNumbers = lottery.getNumbers();
 
             boolean hasBonusNum = hasBonusNumber(lotteryNumbers, winningLotto.getBonusNumber());
             int winningCount = getWinningCount(lotteryNumbers, winningLotto.getWinningLotto());
@@ -92,21 +92,21 @@ public class LottoController {
     }
 
     public static boolean hasBonusNumber(
-            List<LottoNumberVO> lotteryNumbers,
-            LottoNumberVO bonusNumber
+            List<LottoNumber> lotteryNumbers,
+            LottoNumber bonusNumber
     ) {
-        for (LottoNumberVO lotteryNumber : lotteryNumbers) {
+        for (LottoNumber lotteryNumber : lotteryNumbers) {
             if (bonusNumber.equals(lotteryNumber)) return true;
         }
         return false;
     }
 
     public static int getWinningCount(
-            List<LottoNumberVO> lotteryNumbers,
-            List<LottoNumberVO> winningNumbersList
+            List<LottoNumber> lotteryNumbers,
+            List<LottoNumber> winningNumbersList
     ) {
         int winningCount = 0;
-        for (LottoNumberVO lotteryNum : lotteryNumbers) {
+        for (LottoNumber lotteryNum : lotteryNumbers) {
             if (winningNumbersList.contains(lotteryNum)) winningCount++;
         }
         return winningCount;
