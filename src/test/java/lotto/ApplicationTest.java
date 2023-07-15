@@ -85,14 +85,14 @@ class ApplicationTest extends NsTest {
     @ParameterizedTest
     void generateBonusNumberTest2(int testNumber) {
         assertThrows(IllegalArgumentException.class,
-                () -> new LottoNumber(testNumber));
+                () -> LottoNumber.from(testNumber));
     }
 
     @DisplayName("보너스 번호가 이미 당첨 번호에 포함되어 있다면 예외가 발생한다.")
     @Test
     void generateWinningNumberSetTest() {
         assertThrows(IllegalArgumentException.class,
-                () -> new WinningLotto(new LottoNumber(6), new Lotto(List.of(1, 2, 3, 4, 5, 6))));
+                () -> new WinningLotto(LottoNumber.from(6), new Lotto(List.of(1, 2, 3, 4, 5, 6))));
     }
 
     @DisplayName("알맞은 당첨 번호 문자열을 입력하면 정상적으로 리스트가 반환된다.")
